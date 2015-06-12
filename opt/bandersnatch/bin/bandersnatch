@@ -1,0 +1,5 @@
+#!/bin/bash
+
+BANDERSNATCH_ENV=/opt/bandersnatch/bin/activate
+source $BANDERSNATCH_ENV
+bandersnatch mirror

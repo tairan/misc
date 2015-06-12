@@ -1,0 +1,8 @@
+#!/bin/bash
+
+BANDERSNATCH_ENV="/opt/bandersnatch"
+source $BANDERSNATCH_ENV/bin/activate
+pip install -r $BANDERSNATCH_ENV/etc/requirements.txt
+
+ln -s $BANDERSNATCH_ENV/etc/bandersnatch.conf /etc/bandersnatch.conf
+ln -s $BANDERSNATCH_ENV/etc/bandersnatch /usr/local/bin/bandersnatch

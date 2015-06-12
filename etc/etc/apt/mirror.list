@@ -1,0 +1,52 @@
+############# config ##################
+#
+# set base_path    /var/spool/apt-mirror
+#
+# set mirror_path  $base_path/mirror
+# set skel_path    $base_path/skel
+# set var_path     $base_path/var
+# set cleanscript $var_path/clean.sh
+# set defaultarch  <running host architecture>
+# set postmirror_script $var_path/postmirror.sh
+# set run_postmirror 0
+set base_path    /srv/mirrors/ubuntu
+set nthreads     20
+set _tilde 0
+#
+############# end config ##############
+
+deb-i386 http://cn.archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
+deb-i386 http://cn.archive.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+deb-i386 http://cn.archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse
+deb-i386 http://cn.archive.ubuntu.com/ubuntu trusty-proposed main restricted universe multiverse
+deb-i386 http://cn.archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse
+
+deb-amd64 http://cn.archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
+deb-amd64 http://cn.archive.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+deb-amd64 http://cn.archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse
+deb-amd64 http://cn.archive.ubuntu.com/ubuntu trusty-proposed main restricted universe multiverse
+deb-amd64 http://cn.archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse
+
+deb-src http://cn.archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu trusty-proposed main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse
+
+
+# SaltStack
+deb-i386 http://ppa.launchpad.net/saltstack/salt/ubuntu trusty main
+deb-amd64 http://ppa.launchpad.net/saltstack/salt/ubuntu trusty main
+
+# OpenStack
+deb-i386 http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/juno main
+deb-amd64 http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/juno main
+
+# ceph 
+deb-i386 http://ceph.com/debian-giant/ trusty main
+deb-amd64 http://ceph.com/debian-giant/ trusty main
+
+# Cleanup
+clean http://cn.archive.ubuntu.com/ubuntu
+clean http://ubuntu-cloud.archive.canonical.com/ubuntu
+clean http://ppa.launchpad.net/saltstack/salt/ubuntu

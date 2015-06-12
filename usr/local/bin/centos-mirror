@@ -1,0 +1,24 @@
+#!/bin/bash
+
+VERSION=20150612
+
+if [ ! -f `which rsync` ]
+then
+    echo "rsync not found"
+    exit 1
+fi
+
+RSYNC_HOST="rsync://mirrors.kernel.org/mirrors/centos/"
+RSYNC_OPTIONS="--delete·--delay-updates"
+
+LOCAL="/srv/mirrors/centos/"
+LOCK="/var/lock/centos-mirror.lock"
+
+if [ -f "${LOCK}" ]; then
+    echo "rsync already running"
+    exit 0
+fi
+
+touch "${LOCK}"
+rsync -azSHP $RYSNC_OPTIONS $RSYNC_HOST $LOCAL
+/bin/rm "${LOCK}"

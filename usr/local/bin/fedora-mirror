@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+VERSION=20150612
+
+if [ ! -f `which rsync` ]
+then
+    echo "rsync not found"
+    exit 1
+fi
+
+FEDORA="/srv/mirrors/fedora"
+FEDORA_EPEL="/srv/mirrors/fedora-epel"
+LOCK="/var/lock/fedora-mirror.lock"
+
+RSYNC_HOST="rsync://mirrors.kernel.org/mirrors"
+RSYNC_OPTIONS="--delete --delay-updates"
+
+if [ -f "${LOCK}" ]
+then
+    echo "rsync already running"
+    exit 1
+fi
+
+touch "${LOCK}"
+
+echo rsync -azSHP $RSYINC_OPTIONS $RSYNC_HOST/fedora $FEDORA
+echo rsync -azSHP $RSYNC_OPTIONS $RSYNC_HOST/fedora-epel $FEDORA_EPEL
+
+/bin/rm -f "${LOCK}"
