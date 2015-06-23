@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=20150612
+VERSION=20150613
 
 if [ ! -f `which rsync` ]
 then
@@ -8,8 +8,8 @@ then
     exit 1
 fi
 
-RSYNC_HOST="rsync://mirrors.kernel.org/mirrors/centos/"
-RSYNC_OPTIONS="--delete·--delay-updates"
+RSYNC_HOST="rsync://mirrors.yun-idc.com"
+RSYNC_OPTIONS="--delete·--delay-updates --exclude \"isos\""
 
 LOCAL="/srv/mirrors/centos/"
 LOCK="/var/lock/centos-mirror.lock"
@@ -20,5 +20,7 @@ if [ -f "${LOCK}" ]; then
 fi
 
 touch "${LOCK}"
-rsync -azSHP $RYSNC_OPTIONS $RSYNC_HOST $LOCAL
+
+rsync -avHPS $RYSNC_OPTIONS $RSYNC_HOST/centos/ $LOCAL
+
 /bin/rm "${LOCK}"

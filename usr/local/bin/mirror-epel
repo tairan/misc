@@ -1,0 +1,27 @@
+#!/bin/bash
+
+VERSION=20150623
+
+if [ ! -f `which rsync` ]
+then
+    echo "rsync not found"
+    exit 1
+fi
+
+FEDORA_EPEL="/srv/mirrors/epel"
+LOCK="/var/lock/epel-mirror.lock"
+
+RSYNC_HOST="rsync://mirrors.yun-idc.com"
+RSYNC_OPTIONS="--delete --delay-updates"
+
+if [ -f "${LOCK}" ]
+then
+    echo "rsync already running"
+    exit 1
+fi
+
+touch "${LOCK}"
+
+rsync -avzSHP $RSYNC_OPTIONS $RSYNC_HOST/epel $FEDORA_EPEL
+
+/bin/rm -f "${LOCK}"
