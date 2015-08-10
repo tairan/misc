@@ -1,0 +1,23 @@
+#!/bin/bash
+
+VERSION=20150810
+
+if [ ! -f `which rsync` ]
+then
+    echo "rsync not found"
+    exit 1
+fi
+
+LOCK="/var/lock/mirror-apache.lock"
+
+if [ -f "${LOCK}" ]
+then
+    echo "rsync already running"
+    exit 1
+fi
+
+touch "${LOCK}"
+
+rsync -avz --delete --safe-links rsync.apache.org::apache-dist /srv/mirrors/apache
+
+/bin/rm -f "${LOCK}"
