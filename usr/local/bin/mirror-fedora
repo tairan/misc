@@ -11,8 +11,7 @@ fi
 FEDORA="/srv/mirrors/fedora"
 LOCK="/var/lock/fedora-mirror.lock"
 
-RSYNC_HOST="rsync://mirrors.yun-idc.com"
-RSYNC_OPTIONS="--delete --delay-updates"
+EXCLUDES="/usr/local/bin/fedora-exclude.txt"
 
 if [ -f "${LOCK}" ]
 then
@@ -22,6 +21,7 @@ fi
 
 touch "${LOCK}"
 
-rsync -avzSHP $RSYINC_OPTIONS $RSYNC_HOST/fedora $FEDORA
+rsync -vaH --exclude-from=${EXCLUDES} --numeric-ids --delete --delete-after --delay-updates \
+      rsync://dl.fedoraproject.org/fedora-enchilada ${FEDORA}
 
 /bin/rm -f "${LOCK}"
