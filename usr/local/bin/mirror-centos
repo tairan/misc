@@ -8,10 +8,10 @@ then
     exit 1
 fi
 
-RSYNC_HOST="rsync://mirrors.yun-idc.com"
-RSYNC_OPTIONS="--delete·--delay-updates --exclude \"isos\""
+RSYNC_HOST="rsync://mirrors.kernel.org"
+RSYNC_OPTIONS="--delete --delay-updates --exclude "*" --include "7*""
 
-LOCAL="/srv/mirrors/centos/"
+LOCAL="/mnt/mirrors/centos/"
 LOCK="/var/lock/centos-mirror.lock"
 
 if [ -f "${LOCK}" ]; then
