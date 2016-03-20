@@ -9,7 +9,7 @@ then
 fi
 
 RSYNC_HOST="rsync://mirrors.kernel.org"
-RSYNC_OPTIONS="--delete --delay-updates --exclude "*" --include "7*""
+RSYNC_OPTIONS="--delete --delay-updates --include '7*' --exclude '*'"
 
 LOCAL="/mnt/mirrors/centos/"
 LOCK="/var/lock/centos-mirror.lock"
